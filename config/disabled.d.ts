@@ -1,0 +1,28 @@
+export const rules: {
+    'class-methods-use-this': string;
+    'func-names': string;
+    'max-lines-per-function': string;
+    'no-underscore-dangle': string;
+    'promise/always-return': string;
+    'promise/no-callback-in-promise': string;
+    'sort-imports': string;
+    'typescript/explicit-function-return-type': string;
+    'typescript/explicit-module-boundary-types': string;
+    'typescript/no-magic-numbers': string;
+    'typescript/no-unnecessary-boolean-literal-compare': string;
+    'typescript/prefer-readonly-parameter-types': string;
+    'typescript/restrict-template-expressions': string;
+    'unicorn/import-style': string;
+    'unicorn/no-array-reduce': string;
+    'unicorn/no-empty-file': string;
+    'unicorn/no-null': string;
+    'unicorn/no-process-exit': string;
+    'unicorn/prefer-dom-node-append': string;
+    'unicorn/prefer-dom-node-remove': string;
+    'unicorn/prefer-query-selector': string;
+    'unicorn/prefer-spread': string;
+};
+declare namespace _default {
+    export { rules };
+}
+export default _default;

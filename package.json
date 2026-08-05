@@ -1,0 +1,53 @@
+{
+    "name": "oxlint-config-jwalker",
+    "version": "0.1.0",
+    "description": "Shareable framework-agnostic oxlint config",
+    "author": "Jonatas Walker",
+    "homepage": "https://github.com/jonataswalker/oxlint-config-jwalker",
+    "type": "module",
+    "engines": {
+        "node": "^22.20 || ^24"
+    },
+    "exports": {
+        "./package.json": "./package.json",
+        ".": "./config/index.js"
+    },
+    "types": "./config/index.d.ts",
+    "files": [
+        "config"
+    ],
+    "keywords": [
+        "oxlint",
+        "oxlint-config",
+        "oxc"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jonataswalker/oxlint-config-jwalker.git"
+    },
+    "bugs": {
+        "url": "https://github.com/jonataswalker/oxlint-config-jwalker/issues"
+    },
+    "license": "MIT",
+    "scripts": {
+        "lint": "oxlint --type-aware",
+        "lint:fix": "npm run lint -- --fix",
+        "gen:types": "rm -f config/*.d.ts && tsc -p tsconfig.build.json",
+        "test": "node --test test/*.spec.js"
+    },
+    "peerDependencies": {
+        "oxlint": ">=1.77.0",
+        "oxlint-tsgolint": ">=7.0.0"
+    },
+    "peerDependenciesMeta": {
+        "oxlint-tsgolint": {
+            "optional": true
+        }
+    },
+    "devDependencies": {
+        "@types/node": "26.1.2",
+        "oxlint": "1.77.0",
+        "oxlint-tsgolint": "7.0.2001",
+        "typescript": "6.0.3"
+    }
+}

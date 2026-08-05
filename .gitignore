@@ -1,0 +1,4 @@
+node_modules
+*.tsbuildinfo
+tmp-*.json
+lint/*.d.ts

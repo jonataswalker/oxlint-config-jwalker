@@ -1,0 +1,26 @@
+export const rules = {
+    'class-methods-use-this': 'off',
+    'func-names': 'off',
+    'max-lines-per-function': 'off',
+    'no-underscore-dangle': 'off',
+    'promise/always-return': 'off',
+    'promise/no-callback-in-promise': 'off',
+    'sort-imports': 'off',
+    'typescript/explicit-function-return-type': 'off',
+    'typescript/explicit-module-boundary-types': 'off',
+    'typescript/no-magic-numbers': 'off',
+    'typescript/no-unnecessary-boolean-literal-compare': 'off',
+    'typescript/prefer-readonly-parameter-types': 'off',
+    'typescript/restrict-template-expressions': 'off',
+    'unicorn/import-style': 'off',
+    'unicorn/no-array-reduce': 'off',
+    'unicorn/no-empty-file': 'off',
+    'unicorn/no-null': 'off',
+    'unicorn/no-process-exit': 'off',
+    'unicorn/prefer-dom-node-append': 'off',
+    'unicorn/prefer-dom-node-remove': 'off',
+    'unicorn/prefer-query-selector': 'off',
+    'unicorn/prefer-spread': 'off',
+}
+
+export default { rules }

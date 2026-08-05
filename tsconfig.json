@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
+
+        "types": ["node"],
+
+        "noEmit": true,
+        "allowJs": true,
+        "strictNullChecks": true,
+        "resolveJsonModule": true,
+        "allowImportingTsExtensions": true,
+        "allowSyntheticDefaultImports": true
+    },
+    "include": ["config/**/*.js", "test/**/*.js", "lint/**/*.ts"]
+}
