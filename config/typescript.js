@@ -68,11 +68,13 @@ export const overrides = [
     {
         files: [GLOB_TS, GLOB_TSX],
         rules: {
-            'no-shadow': 'error',
+            'no-implied-eval': 'off',
+            'no-throw-literal': 'off',
             'no-unused-expressions': [
                 'error',
                 { allowShortCircuit: true, allowTernary: true, enforceForJSX: true },
             ],
+            'require-await': 'off',
             'typescript/await-thenable': 'error',
             'typescript/ban-ts-comment': ['error', { 'ts-ignore': 'allow-with-description' }],
             'typescript/ban-tslint-comment': 'error',

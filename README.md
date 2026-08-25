@@ -8,8 +8,10 @@ Shareable [oxlint](https://oxc.rs) config — native rules only, no JavaScript p
 npm i -D oxlint-config-jwalker oxlint oxlint-tsgolint
 ```
 
-`oxlint-tsgolint` is optional; it is what powers the type-aware rules. Skip it and
-compose with `typeAware: false`.
+`oxlint-tsgolint` is what powers the type-aware rules. It is an optional peer, but
+the default `jwalker()` sets `options.typeAware: true` — if you skip the install you
+must also compose with `typeAware: false`, or oxlint exits with
+`Failed to find tsgolint executable`.
 
 ## Usage
 
@@ -62,6 +64,24 @@ Categories are set to `correctness`, `suspicious` and `perf` as errors, with
 `pedantic`, `restriction`, `style` and `nursery` off. Taste rules are then listed
 explicitly, so upgrading oxlint adds new correctness coverage without silently
 introducing new stylistic opinions.
+
+### Type-aware linting costs a flat ~0.3s, even on JavaScript
+
+`typeAware: true` makes oxlint spawn tsgolint and build a TypeScript program for the
+run. The `**/*.{js,cjs,mjs}` override in the `typescript` fragment turns every
+type-aware rule off for JavaScript, but that suppresses the *diagnostics*, not the
+*work* — the program is still built.
+
+Measured on 300 generated files, oxlint 1.80:
+
+| Tree            | `typeAware: true` | `typeAware: false` |
+| --------------- | ----------------- | ------------------ |
+| 300 `.js` files | 0.38s / 0.44s     | 0.11s / 0.13s      |
+| 300 `.ts` files | 1.04s             | 0.27s              |
+
+So on a JavaScript-only repo the default is ~3x slower for zero extra coverage.
+Compose with `jwalker({ typeAware: false })` there. On TypeScript the cost is real
+work and worth paying.
 
 **Formatting is not this config's job.** The `style` category is off; use
 [oxfmt](https://oxc.rs/docs/guide/usage/formatter) and enable its `sortImports`

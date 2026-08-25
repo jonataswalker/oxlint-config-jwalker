@@ -53,6 +53,16 @@ describe('oxlint accepts the composed config', () => {
         )
     })
 
+    it('does not double-report a rule that has a typescript replacement', () => {
+        const codes = codesIn(lint('lint/invalid.ts'))
+
+        assert.ok(codes.has('typescript(require-await)'))
+        assert.ok(
+            !codes.has('eslint(require-await)'),
+            'the base rule fired alongside its typescript replacement',
+        )
+    })
+
     it('keeps type-aware rules off javascript sources', () => {
         const report = lint('lint/invalid.js')
         const codes = codesIn(report)
