@@ -1,8 +1,11 @@
+import { RESTRICTED_GLOBALS } from './base.js'
+
 export const plugins = ['node']
 
 export const rules = {
     'no-restricted-globals': [
         'error',
+        ...RESTRICTED_GLOBALS,
         { message: 'Import Buffer from `node:buffer` instead', name: 'Buffer' },
         { message: 'Import process from `node:process` instead', name: 'process' },
         { message: 'Import setTimeout from `node:timers` instead', name: 'setTimeout' },
@@ -14,7 +17,6 @@ export const rules = {
     ],
     'node/no-exports-assign': 'error',
     'node/no-new-require': 'error',
-    'unicorn/prefer-node-protocol': 'error',
 }
 
 export default { plugins, rules }

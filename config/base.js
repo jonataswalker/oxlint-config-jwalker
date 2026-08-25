@@ -1,5 +1,10 @@
 export const plugins = ['unicorn', 'oxc', 'import', 'promise']
 
+export const RESTRICTED_GLOBALS = [
+    { message: 'Use `globalThis` instead.', name: 'global' },
+    { message: 'Use `globalThis` instead.', name: 'self' },
+]
+
 export const rules = {
     'accessor-pairs': 'error',
     'array-callback-return': 'error',
@@ -45,11 +50,7 @@ export const rules = {
     'no-promise-executor-return': 'error',
     'no-proto': 'error',
     'no-redeclare': ['error', { builtinGlobals: false }],
-    'no-restricted-globals': [
-        'error',
-        { message: 'Use `globalThis` instead.', name: 'global' },
-        { message: 'Use `globalThis` instead.', name: 'self' },
-    ],
+    'no-restricted-globals': ['error', ...RESTRICTED_GLOBALS],
     'no-restricted-properties': [
         'error',
         { message: 'Use `Object.getPrototypeOf` or `Object.setPrototypeOf` instead.', property: '__proto__' },
@@ -115,7 +116,6 @@ export const rules = {
     'unicorn/explicit-length-check': 'error',
     'unicorn/filename-case': ['error', { cases: { camelCase: true, kebabCase: true, pascalCase: true } }],
     'unicorn/no-lonely-if': 'error',
-    'unicorn/no-negated-condition': 'error',
     'unicorn/no-nested-ternary': 'error',
     'unicorn/no-static-only-class': 'error',
     'unicorn/no-typeof-undefined': 'error',

@@ -54,8 +54,20 @@ describe('lib exports', () => {
     })
 
     it('uses brace globs, never extglobs, since oxlint does not parse extglobs', () => {
-        for (const [name, glob] of Object.entries(GLOBS)) {
+        const patterns = [
+            ...Object.entries(GLOBS),
+            ...GLOB_TESTS.map((glob, index) => [`GLOB_TESTS[${index}]`, glob]),
+            ...GLOB_EXCLUDE.map((glob, index) => [`GLOB_EXCLUDE[${index}]`, glob]),
+        ]
+
+        for (const [name, glob] of patterns) {
             assert.ok(!glob.includes('?('), `${name} uses an extglob oxlint cannot match`)
+        }
+    })
+
+    it('never uses an empty brace alternative, which oxlint does not expand', () => {
+        for (const glob of GLOB_EXCLUDE) {
+            assert.ok(!glob.includes('{,'), `${glob} relies on an empty brace alternative`)
         }
     })
 })
@@ -86,6 +98,30 @@ describe('jwalker composer', () => {
         const restricted = config.rules['no-restricted-globals'].slice(1)
 
         assert.ok(restricted.every((entry) => entry.name !== 'Buffer'))
+        assert.ok(restricted.some((entry) => entry.name === 'global'))
+    })
+
+    it('keeps the base restricted globals when the node preset merges its own', () => {
+        const restricted = jwalker().rules['no-restricted-globals'].slice(1)
+        const names = new Set(restricted.map((entry) => entry.name))
+
+        for (const name of ['global', 'self', 'Buffer', 'process']) {
+            assert.ok(names.has(name), `${name} was lost when node rules overwrote base rules`)
+        }
+    })
+
+    it('hands each base rule over to its typescript replacement on ts files', () => {
+        const [typeScriptOverride] = jwalker().overrides
+        const handovers = {
+            'no-implied-eval': 'typescript/no-implied-eval',
+            'no-throw-literal': 'typescript/only-throw-error',
+            'require-await': 'typescript/require-await',
+        }
+
+        for (const [baseRule, replacement] of Object.entries(handovers)) {
+            assert.equal(typeScriptOverride.rules[baseRule], 'off', `${baseRule} double-reports`)
+            assert.equal(typeScriptOverride.rules[replacement], 'error')
+        }
     })
 
     it('lets disabled win over every preset composed before it', () => {
