@@ -1,6 +1,6 @@
 {
     "name": "oxlint-config-jwalker",
-    "version": "0.2.0",
+    "version": "0.1.0",
     "description": "Shareable framework-agnostic oxlint config",
     "author": "Jonatas Walker",
     "homepage": "https://github.com/jonataswalker/oxlint-config-jwalker",
