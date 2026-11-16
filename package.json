@@ -46,11 +46,14 @@
         }
     },
     "devDependencies": {
-        "@types/node": "26.3.0",
-        "oxlint": "1.80.0",
-        "oxlint-tsgolint": "7.0.2001",
-        "release-it": "21.0.2",
+        "@types/node": "26.6.6",
+        "oxlint": "1.94.0",
+        "oxlint-tsgolint": "7.0.2007",
+        "release-it": "21.1.2",
         "typescript": "7.0.2"
+    },
+    "overrides": {
+        "basic-ftp": "^6.2.6"
     },
     "release-it": {
         "github": {
