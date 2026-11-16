@@ -1,3 +1,6 @@
+/** @import { OxlintConfig } from 'oxlint' */
+
+/** @type {NonNullable<OxlintConfig['rules']>} */
 export const rules = {
     'class-methods-use-this': 'off',
     'func-names': 'off',
@@ -23,4 +26,7 @@ export const rules = {
     'unicorn/prefer-spread': 'off',
 }
 
-export default { rules }
+/** @type {{ rules: typeof rules }} */
+const preset = { rules }
+
+export default preset

@@ -9,6 +9,9 @@ export * from './constants.js'
 
 export { base, node, vue, disabled, typescript }
 
+/** @import { OxlintConfig } from 'oxlint' */
+
+/** @type {NonNullable<OxlintConfig['categories']>} */
 export const categories = {
     correctness: 'error',
     nursery: 'off',
@@ -30,7 +33,7 @@ export const categories = {
 
 /**
  * @param {JwalkerOptions} [options]
- * @returns {import('oxlint').OxlintConfig}
+ * @returns {OxlintConfig}
  */
 export function jwalker(options = {}) {
     const {
@@ -41,6 +44,7 @@ export function jwalker(options = {}) {
         vue: withVue = false,
     } = options
 
+    /** @type {OxlintConfig[]} */
     const parts = [base]
 
     if (withNode) parts.push(node)

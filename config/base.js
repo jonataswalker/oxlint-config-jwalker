@@ -1,3 +1,6 @@
+/** @import { OxlintConfig } from 'oxlint' */
+
+/** @type {NonNullable<OxlintConfig['plugins']>} */
 export const plugins = ['unicorn', 'oxc', 'import', 'promise']
 
 export const RESTRICTED_GLOBALS = [
@@ -5,6 +8,7 @@ export const RESTRICTED_GLOBALS = [
     { message: 'Use `globalThis` instead.', name: 'self' },
 ]
 
+/** @type {NonNullable<OxlintConfig['rules']>} */
 export const rules = {
     'accessor-pairs': 'error',
     'array-callback-return': 'error',
@@ -129,4 +133,7 @@ export const rules = {
     'unicorn/switch-case-braces': 'error',
 }
 
-export default { plugins, rules }
+/** @type {{ plugins: typeof plugins, rules: typeof rules }} */
+const preset = { plugins, rules }
+
+export default preset

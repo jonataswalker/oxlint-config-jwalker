@@ -1,5 +1,9 @@
+/** @import { OxlintConfig } from 'oxlint' */
+
+/** @type {NonNullable<OxlintConfig['plugins']>} */
 export const plugins = ['vue']
 
+/** @type {NonNullable<OxlintConfig['rules']>} */
 export const rules = {
     'vue/no-export-in-script-setup': 'error',
     'vue/no-shared-component-data': 'error',
@@ -7,4 +11,7 @@ export const rules = {
     'vue/valid-define-props': 'error',
 }
 
-export default { plugins, rules }
+/** @type {{ plugins: typeof plugins, rules: typeof rules }} */
+const preset = { plugins, rules }
+
+export default preset

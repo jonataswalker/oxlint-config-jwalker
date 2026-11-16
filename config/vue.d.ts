@@ -1,17 +1,12 @@
-export declare const plugins: string[];
-export declare const rules: {
-    'vue/no-export-in-script-setup': string;
-    'vue/no-shared-component-data': string;
-    'vue/require-prop-types': string;
-    'vue/valid-define-props': string;
+/** @import { OxlintConfig } from 'oxlint' */
+import type { OxlintConfig } from 'oxlint';
+/** @type {NonNullable<OxlintConfig['plugins']>} */
+export declare const plugins: NonNullable<OxlintConfig['plugins']>;
+/** @type {NonNullable<OxlintConfig['rules']>} */
+export declare const rules: NonNullable<OxlintConfig['rules']>;
+/** @type {{ plugins: typeof plugins, rules: typeof rules }} */
+declare const preset: {
+    plugins: typeof plugins;
+    rules: typeof rules;
 };
-declare const _default: {
-    plugins: string[];
-    rules: {
-        'vue/no-export-in-script-setup': string;
-        'vue/no-shared-component-data': string;
-        'vue/require-prop-types': string;
-        'vue/valid-define-props': string;
-    };
-};
-export default _default;
+export default preset;

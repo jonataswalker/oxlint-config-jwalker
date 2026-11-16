@@ -1,12 +1,17 @@
 import { GLOB_JS, GLOB_TS, GLOB_DTS, GLOB_JSX, GLOB_TSX } from './constants.js'
 
+/** @import { OxlintConfig, OxlintOverride } from 'oxlint' */
+
+/** @type {NonNullable<OxlintConfig['plugins']>} */
 export const plugins = ['typescript']
 
+/** @type {NonNullable<OxlintConfig['rules']>} */
 export const rules = {
     'typescript/consistent-type-definitions': ['error', 'type'],
     'typescript/dot-notation': ['error', { allowKeywords: true }],
 }
 
+/** @type {NonNullable<OxlintOverride['rules']>} */
 const TYPE_AWARE_OFF = {
     'typescript/await-thenable': 'off',
     'typescript/consistent-return': 'off',
@@ -64,6 +69,7 @@ const TYPE_AWARE_OFF = {
     'typescript/use-unknown-in-catch-callback-variable': 'off',
 }
 
+/** @type {OxlintOverride[]} */
 export const overrides = [
     {
         files: [GLOB_TS, GLOB_TSX],
@@ -119,4 +125,7 @@ export const overrides = [
     },
 ]
 
-export default { overrides, plugins, rules }
+/** @type {{ overrides: typeof overrides, plugins: typeof plugins, rules: typeof rules }} */
+const preset = { overrides, plugins, rules }
+
+export default preset

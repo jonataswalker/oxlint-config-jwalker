@@ -5,15 +5,10 @@ import disabled from './disabled.js';
 import typescript from './typescript.js';
 export * from './constants.js';
 export { base, node, vue, disabled, typescript };
-export declare const categories: {
-    correctness: string;
-    nursery: string;
-    pedantic: string;
-    perf: string;
-    restriction: string;
-    style: string;
-    suspicious: string;
-};
+import type { OxlintConfig } from 'oxlint';
+/** @import { OxlintConfig } from 'oxlint' */
+/** @type {NonNullable<OxlintConfig['categories']>} */
+export declare const categories: NonNullable<OxlintConfig['categories']>;
 export type JwalkerOptions = {
     /**
      * Extra ignore patterns, appended after the shared excludes.
@@ -46,6 +41,6 @@ export type JwalkerOptions = {
  */
 /**
  * @param {JwalkerOptions} [options]
- * @returns {import('oxlint').OxlintConfig}
+ * @returns {OxlintConfig}
  */
-export declare function jwalker(options?: JwalkerOptions): import('oxlint').OxlintConfig;
+export declare function jwalker(options?: JwalkerOptions): OxlintConfig;

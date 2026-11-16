@@ -1,7 +1,11 @@
 import { RESTRICTED_GLOBALS } from './base.js'
 
+/** @import { OxlintConfig } from 'oxlint' */
+
+/** @type {NonNullable<OxlintConfig['plugins']>} */
 export const plugins = ['node']
 
+/** @type {NonNullable<OxlintConfig['rules']>} */
 export const rules = {
     'no-restricted-globals': [
         'error',
@@ -19,4 +23,7 @@ export const rules = {
     'node/no-new-require': 'error',
 }
 
-export default { plugins, rules }
+/** @type {{ plugins: typeof plugins, rules: typeof rules }} */
+const preset = { plugins, rules }
+
+export default preset
