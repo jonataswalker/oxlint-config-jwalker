@@ -67,5 +67,6 @@
         "github": {
             "release": true
         }
-    }
+    },
+    "funding": "https://github.com/sponsors/jonataswalker"
 }
