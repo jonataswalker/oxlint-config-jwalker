@@ -115,6 +115,10 @@ array-func, security — and on `jsonc`/prettier passes for JSON, CSS and HTML t
 oxlint does not cover at all. Run both if you want that coverage: oxlint for the fast
 pass, ESLint for the remainder.
 
+## Sponsor
+
+If this config is useful to you, you can [sponsor its maintenance on GitHub](https://github.com/sponsors/jonataswalker).
+
 ## License
 
 MIT
