@@ -1,21 +1,12 @@
-export declare const plugins: string[];
-export declare const rules: {
-    'no-restricted-globals': (string | {
-        message: string;
-        name: string;
-    })[];
-    'node/no-exports-assign': string;
-    'node/no-new-require': string;
+import type { OxlintConfig } from 'oxlint';
+/** @import { OxlintConfig } from 'oxlint' */
+/** @type {NonNullable<OxlintConfig['plugins']>} */
+export declare const plugins: NonNullable<OxlintConfig['plugins']>;
+/** @type {NonNullable<OxlintConfig['rules']>} */
+export declare const rules: NonNullable<OxlintConfig['rules']>;
+/** @type {{ plugins: typeof plugins, rules: typeof rules }} */
+declare const preset: {
+    plugins: typeof plugins;
+    rules: typeof rules;
 };
-declare const _default: {
-    plugins: string[];
-    rules: {
-        'no-restricted-globals': (string | {
-            message: string;
-            name: string;
-        })[];
-        'node/no-exports-assign': string;
-        'node/no-new-require': string;
-    };
-};
-export default _default;
+export default preset;

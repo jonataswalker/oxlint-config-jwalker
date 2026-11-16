@@ -8,10 +8,21 @@ Shareable [oxlint](https://oxc.rs) config — native rules only, no JavaScript p
 npm i -D oxlint-config-jwalker oxlint oxlint-tsgolint
 ```
 
-`oxlint-tsgolint` is what powers the type-aware rules. It is an optional peer, but
-the default `jwalker()` sets `options.typeAware: true` — if you skip the install you
-must also compose with `typeAware: false`, or oxlint exits with
-`Failed to find tsgolint executable`.
+The type-aware rules need one backend, and both are optional peers:
+
+| Backend                            | Install           | oxlint   |
+| ---------------------------------- | ----------------- | -------- |
+| tsgolint                           | `oxlint-tsgolint` | >=1.77.0 |
+| tsrs-lint (oxc's Rust port of tsc) | `tsrs`            | >=1.92.0 |
+
+When `tsrs` is installed, oxlint runs `tsrs-lint` and ignores `oxlint-tsgolint`.
+tsrs has no stable release yet: the peer range starts at `7.1.0-beta.tsrs2`, so
+`npm i -D tsrs` resolves to a tested version, while the older `0.x` builds that
+npm's `latest` tag still points at are rejected.
+
+The default `jwalker()` sets `options.typeAware: true`. If you install neither
+backend, compose with `typeAware: false`, or oxlint exits with
+`Failed to find type-aware linter executable`.
 
 ## Usage
 
@@ -51,7 +62,16 @@ export default defineConfig({
 ```
 
 The individual fragments (`base`, `node`, `typescript`, `vue`, `disabled`) are also
-exported for `extends`. Note that oxlint's `extends` merges only `rules`, `plugins`
+exported for `extends`, typed with oxlint's own config types:
+
+```typescript
+import { defineConfig } from 'oxlint'
+import { base, typescript } from 'oxlint-config-jwalker'
+
+export default defineConfig({ extends: [base, typescript] })
+```
+
+Note that oxlint's `extends` merges only `rules`, `plugins`
 and `overrides` — `categories`, `env`, `options` and `ignorePatterns` must be set at
 the top level, which is exactly what `jwalker()` does for you.
 
